@@ -1,0 +1,7 @@
+@media print{
+	font-family: sans-serif !important;
+	.no-print, .no-print *
+    {
+        display: none !important;
+    }
+}

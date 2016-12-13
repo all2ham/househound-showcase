@@ -1,0 +1,105 @@
+<h3>Upload files</h3>
+<div id="upload-progress" class="progress success round">
+  <span class="meter" style="width:0%;"></span>
+</div>
+<br />
+  <div class="fileinput-button text-center button small-12 columns">
+  <!--<div class="fileinput-button text-center clickheredrag small-7 small-centered columns">-->
+    <!--<div class="overlay"></div>-->
+      <!--<div class="small-7 small-centered panel columns radius ">-->
+
+        <h4>Click here or drag and drop files to upload new photos</h2>
+        <%= file_field_tag :file, multiple: true, id: 'fileupload' %>
+
+      <!--</div>-->
+  </div>
+
+<div id="form-photos"></div>
+
+<h3>New Photos</h3>
+<div id="no-photo">None</div>
+<ul class="small-block-grid-3" id="new-photos">
+</ul>
+
+<h3>Existing Photos</h3>
+<ul class="small-block-grid-3" id="old-photos">
+  <%= f.simple_fields_for :photos, @listing.photos do |ff|  %>
+    <%= ff.input :_destroy, as: :hidden, input_html: { class: 'delete-photo' } %>
+    <li class="listing-form-photo">
+      <%= link_to 'Delete', class: 'delete-photo' do %>
+        <i class="fa fa-trash"></i> Delete
+      <% end %>
+      <%= image_tag ff.object.photo.url %>
+    </li>
+  <% end %>
+</ul>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+      autoUpload: true,
+      url: 'https://<%= Rails.application.secrets[:assets][:s3_bucket_name] %>.s3.amazonaws.com/',
+      type: 'POST',
+      dataType: 'xml',
+      acceptFileType: '/(\.|\/)(gif|jpe?g|png)$/i',
+      maxFileSize: 5000000,
+      maxNumberOfFiles: 3,
+      success: function(data) {
+        // Write the photo to the page
+
+        var url = $(data).find('Location').text();
+        var key = $(data).find('Key').text();
+
+        var listingId = $('form').data('listing-id');
+
+        var uploadData = {};
+        uploadData['key'] = key;
+
+        $.post('/listings/' + listingId + '/build/upload',
+                uploadData,
+                function(data) {
+                  $("<li><img src='" + url + "'></li>").appendTo('#new-photos');
+
+                  // Hide the no photo
+                  $('#no-photo').css(
+                          'display',
+                          'none'
+                  );
+                }
+        );
+      },
+
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#upload-progress span').css(
+                'width',
+                progress + '%'
+        );
+      },
+      fail: function(e, data) {
+        console.log('failed');
+        console.log(data);
+      },
+
+      submit: function(e, data) {
+        var $this = $(this);
+
+        $.ajax({
+          dataType: 'json',
+          url: '/photo-upload-form-data',
+          cache: false,
+          success: function (result) {
+            data.formData = result;
+            $this.fileupload('send', data);
+          },
+          error: function(response, status) {
+            alert('there was an error');
+          }
+        });
+        return false;
+      }
+
+    });
+  });
+</script>

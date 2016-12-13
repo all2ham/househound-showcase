@@ -1,0 +1,26 @@
+<!--<ul class="pricing-table">-->
+  <!--<li class="title"><#%= plan.name %></li>-->
+  <!--<li class="price"><#%= (plan.total_price.to_f) %> / month (incl. tax)</li>-->
+  <!--<li class="description"><#%= plan.description %></li>-->
+  <!--<li class="cta-button">-->
+
+  <!--</li>-->
+<!--</ul>-->
+
+  <li class="title">
+
+    <h1 class=""><%= plan.name.split.first %></h1>
+  </li>
+  <li class="price"><%= (plan.total_price.to_f.floor) %><sup>.<%= ((plan.total_price.to_f.modulo(1)*100).floor) %></sup></li>
+  <li class="bullet-item period">monthly</li>
+  <li class="description"><%= plan.description %> </li>
+  <li class="bullet-item"><%= plan.amount_of_listings %> listings</li>
+  <li class="bullet-item"><%= plan.poster_templates %>  posters</li>
+  <li class="bullet-item"><%= plan.notification_permissions %> </li>
+  <li class="bullet-item"><%= plan.support_package %> </li>
+  <li class="cta-button"><a class="" href="#">
+    <%= form_tag subscription_path do %>
+        <%= hidden_field_tag 'stripe_plan_id', plan.stripe_plan_id %>
+        <%= render 'stripe', plan: plan %>
+    <% end %></a></li>
+

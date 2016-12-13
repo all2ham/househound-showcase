@@ -1,0 +1,1 @@
+househound-workers: /home/househound/apps/househound/current/sidekiq -C config/sidekiq.rb

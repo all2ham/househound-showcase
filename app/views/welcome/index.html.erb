@@ -1,0 +1,303 @@
+<%= content_for(:head) do %>
+    <%= javascript_include_tag 'welcome' %>
+<% end %>
+
+
+
+    <% unless current_user %>
+    <div class="row smallbg show-for-small">
+    <div class="show-for-small small-10 medium-6 large-4 small-centered columns">
+      <h1 class="text-center megaheader">Sign In</h1>
+      <%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), wrapper: :prefix_input do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :email, :autofocus => true, wrapper: :prefix_input %>
+            <%= f.input :password, wrapper: :prefix_input %>
+          </div>
+          <div class="row">
+            <div class="small-6 large-6 columns">
+              <%= f.input :remember_me, wrapper: :inline_checkbox_login, :as => :boolean if devise_mapping.rememberable? %>
+            </div>
+          </div>
+
+          <div class="form-actions small-12 small-centered columns text-center">
+            <%= f.button :submit, "Sign in", class: 'expand radius' %>
+          </div>
+      <% end %>
+
+      <%= render "devise/shared/password" %>
+    </div>
+    </div>
+<% end %>
+
+<!--<div id="feedback" class="show-for-medium-up">-->
+  <!--<a>Contact us!</a>-->
+<!--</div>-->
+<div id="welcomebuttonwrapper">
+<div class="row show-for-small">
+  <%if user_signed_in?%>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+      <div class="row smallwelcomebuttons" style="background-color: #4bb33a">
+        <div class="small-6 columns small-centered text-center">Sign Out</div>
+      </div>
+  <% end %>
+  <% end %>
+
+
+<div class="row smallwelcomebuttons swb1" style="background-color: #36822a">
+  <div class="small-6 columns small-centered text-center">Learn More</div>
+</div>
+  <div class="row smallwelcomebuttons swb2" style="background-color: #4bb33a">
+    <div class="small-6 columns small-centered text-center">Mailing List</div>
+  </div>
+</div>
+<div class="row fullWidth show-for-medium-up">
+    <div class="page1">
+      <div class="row">
+        <div class="small-12 large-10 columns small-centered">
+          <div class="panel small-7 columns">
+            <h1>Connecting agents and buyers.</h1>
+            <h3>Start your free trial today, it's that simple.</h3>
+            <div class="row">
+              <div class="small-2 columns splashicon">
+                <%= image_tag 'welcome/minibroadcast.png' %>
+              </div>
+              <div style="padding:10px" class="small-10 columns splashzinger"><h3>Agents analytics  enhance your connectivity with prospective buyers</h3></div>
+            </div>
+            <div class="row">
+              <div class="small-2 columns splashicon">
+                <%= image_tag 'welcome/miniheart.png' %>
+              </div>
+              <div style="padding:10px" class="small-10 columns splashzinger"><h3>Get powerful insights into how buyers feel about your listings</h3></div>
+            </div>
+            <div class="row">
+              <div class="small-2 columns splashicon">
+                <%= image_tag 'welcome/mini3dhouse2.png' %>
+              </div>
+              <div style="padding:10px" class="small-10 columns splashzinger"><h3>Buyers seek out, compare, and buy their dream home from intuitive mobile app</h3></div>
+            </div>
+          </div>
+          <% if current_user %>
+              <div class="panel small-5 columns">
+                <h2 style="padding-top:25px;">You are currently logged in. Click the <i class="fa fa-plus-circle"></i> icon at the top of the page to start creating listings.</h2>
+
+                <h2 style="padding-top:25px;">The <i class="fa fa-list-ul"></i> icon will show you all of the listings you have active.</h2>
+
+                <h2 style="padding-top:25px;">The <i class="fa fa-gear"></i> icon will let you update various settings for your account and agent profile.</h2>
+
+              </div>
+          <% else current_user %>
+        <div class="panel small-5 columns">
+            <h2 style="padding-top:25px;">Sign up for free</h2>
+            <hr>
+              <!--<h1>A listing service for the 21<sup>st</sup> century.</h1>-->
+              <!--<h3>Enter your broker code to get started! Scroll down to learn more!</h3>-->
+              <!--</%= render 'promocode_form' %>-->
+
+              <!--<h3>If you are having any trouble, please email us at <a href="mailto:customerservice@househound.co">customerservice@househound.co</a>.</h3>-->
+          <%= render 'devise/registrations/new_landing' %>
+            <div class="row">
+              <div class="small-5 columns"><hr></div>
+              <div class="small-2 columns text-center"><h3>or</h3></div>
+              <div class="small-5 columns"><hr></div>
+            </div>
+            <div class="row">
+            <h3>If you are with one of our partner brokers, enter your broker code below to continue:</h3></div>
+            <%= render 'promocode_form' %>
+            <h5 style="padding-left:3px;"><a href="/brokers">Brokers click here.</a></h5>
+          </div>
+              <% end %>
+        </div>
+
+
+      </div>
+    </div>
+</div>
+
+<div class="learnmore show-for-medium-up">
+  <div class="panel">
+    Learn More
+    <!--Learn More <span style="color:grey;font-size:8pt">&#9660</span>-->
+  </div>
+</div>
+<div class="howitworks show-for-large-up">
+    <div class="row show-for-large-up howitworkstext"><h1 class="text-center megaheader">How it Works</h1><hr></div>
+    <!--<div class="row fullWidth cycle show-for-large-up"></div>-->
+
+      <div class="row" style="margin-top: 60px">
+        <div class="small-3 columns panel">
+          <h4>1. Agents</h4>
+          <p>Real estate agents use the simple and intuitive interface of HouseHound.co to create and manage listings. HouseHound.co is designed with simplicity and security in mind.</p>
+        </div>
+        <div class="small-6 columns cycle">
+        </div>
+        <div class="small-3 columns panel">
+          <h4>5. Communication</h4>
+          <p>Agents instantly get notified of  interest in their listings. They can broadcast messages to all interested buyers at the push of a button!</p>
+        </div>
+      </div>  <div class="row">
+        <div class="small-3 columns panel" style="margin-top:-80px">
+          <h4>2. Listing Poster</h4>
+          <p>Agents use the one-click listing poster creator to generate barcodes. The barcode can be placed anywhere the agent wishes in order to maximize exposure.</p>
+        </div>
+        <div class="small-6 columns panel">
+          <h4>3. HouseHound Mobile App</h4>
+          <p>When a customer is interested in a listing, they can scan the barcode to save the listing in the HouseHound mobile app on their smartphones. The mobile app is extremely light-weight and user friendly, and of course, free!</p>
+        </div>
+        <div class="small-3 columns panel" style="margin-top:-90px">
+          <h4>4. Buyers</h4>
+          <p>Buyers now have all of their favourite listings saved on their phones. In addition, they have the contact information of the listing agents at their fingertips, which allows for instant communication with agents.</p>
+        </div>
+  </div>
+</div>
+
+<div class="howitworkssmall show-for-medium-down row">
+  <div class="row howitworkstext"><h1 class="text-center megaheader">How it Works</h1><hr></div>
+  <div class="row" style="margin-top: 60px">
+    <div class="row">
+    <div class="small-2 columns panel">
+      <%= image_tag 'welcome/sscycle_1.png' %>
+    </div>
+    <div class="small-10 columns panel">
+      <h4>1. Agents</h4>
+      <p>Real estate agents use the simple and intuitive interface of HoundHound.co website to create and manage listings. HouseHound.co is designed with simplicity and security in mind.</p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-2 columns panel">
+      <%= image_tag 'welcome/sscycle_2.png' %>
+    </div>
+    <div class="small-10 columns panel">
+      <h4>2. Listing Poster</h4>
+      <p>Agents use the one-click listing poster creator to generate barcodes. The barcode can be placed anywhere the agent wishes in order to maximize exposure.</p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-2 columns panel">
+      <%= image_tag 'logo75.png' %>
+    </div>
+    <div class="small-10 columns panel">
+      <h4>3. HouseHound Mobile App</h4>
+      <p>When a customer is interested in listing, they can scan the barcode to save the listing in the HouseHound mobile app on their smartphones. The mobile app is extremely light-weight and user friendly, and of course, free!</p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-2 columns panel">
+      <%= image_tag 'welcome/sscycle_4.png' %>
+    </div>
+    <div class="small-10 columns panel">
+      <h4>4. Buyers</h4>
+      <p>Buyers now have all of their favourite listings saved on their phones. In addition, they have the contact information of the listing agents at their fingertips, which allows for instant communication with agents.</p>
+    </div>
+    </div>
+    <div class="row">
+    <div class="small-12 columns panel smallcycle">
+      <%= image_tag 'welcome/cycle.png' %>
+    </div>
+    <div class="small-12 columns panel">
+      <h4>5. Communication</h4>
+      <p>Agents instantly get notified of  interest in their listings. They can broadcast messages to all interested buyers at the push of a button!</p>
+    </div>
+      </div>
+</div>
+</div>
+
+<div class="row anywherebanner show-for-medium-down">
+  <div class="panel">
+      <h1>Create your listings.</h1>
+      <h1>Communicate to your buyers.</h1>
+      <h1>From <span style="color:#4bb33a"> anywhere.</span> </h1>
+    </div>
+</div>
+
+<div class="row fullWidth show-for-large-up">
+  <%= image_tag 'welcome/anywherebanner.png' %>
+</div>
+
+<div class="row fullWidth">
+  <div class="features">
+    <div class="row">
+      <div class="small-3 columns panel show-for-medium-up">
+      </div>
+      <div class="large-2 small-4 columns panel show-for-medium-up">
+        <%= image_tag 'welcome/3dhouse.png' %>
+      </div>
+      <div class="small-12 medium-4 columns panel">
+        <h3 class="newlight">See your listings in a new light</h3>
+        <div class="small-8 columns small-centered panel show-for-small">
+          <%= image_tag 'welcome/3dhouse.png' %>
+        </div>
+        <p>HouseHound connects every aspect of real estate. Our
+          platform supports you and your agent through every stage
+          of a transaction. Our listing platform is well supported
+          by a basket of tools to ensure that you find your dream
+          home or investment property.</p>
+      </div>
+      <div class="small-3 columns panel show-for-large-up">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 columns panel show-for-medium-up">
+      </div>
+      <div class="small-12 medium-4 columns panel">
+        <h3>Instant Communation to and from Buyers</h3>
+        <div class="small-8 columns small-centered panel show-for-small">
+          <%= image_tag 'welcome/broadcast.png' %>
+        </div>
+        <p>Our advanced notification system allows you to interact with agents on
+          a consolidated platform. Real-time status updates can be
+          transmitted to all real estate participants. The user-friendly mobile
+          app connects and simplifies every transaction. Connect to
+          HouseHound, the best way to remain informed.</p>
+      </div>
+      <div class="large-2 small-4 columns panel show-for-medium-up">
+        <%= image_tag 'welcome/broadcast.png' %>
+      </div>
+      <div class="small-3 columns panel show-for-large-up">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 columns panel show-for-medium-up">
+      </div>
+      <div class="large-2 small-4 columns panel show-for-medium-up">
+        <%= image_tag 'welcome/tools.png' %>
+      </div>
+      <div class="small-12 medium-4 columns panel">
+        <h3>Access Extensive Features and Tools</h3>
+        <div class="small-8 columns small-centered panel show-for-small">
+          <%= image_tag 'welcome/tools.png' %>
+        </div>
+        <p>HouseHound provides all real estate participants with
+          valuable tools and features designed to enhance every
+          stage of the real estate process. We have created a real
+          estate ecosystem to help you stay focused on your goals.</p>
+      </div>
+      <div class="small-3 columns panel show-for-large-up">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row fullWidth">
+  <div class="moreinfoform">
+    <div class="row">
+      <div class="large-6 small-12 columns small-centered">
+        <div class="panel show-for-medium-up">
+          <h3>Want to hear updates on what we are up to? Enter your email below to join the HouseHound mailing list. </h3>
+          <%= render 'mailinglist_form' %>          <hr>
+          <h3>If you wish to make any inquiries, click <a href="/contact">here</a> to fill out a quick contact form.</h3>
+        </div>
+        <div class="panel show-for-small">
+          <h3>Want to here updates on what we are up to? Enter your email below to join the HouseHound mailing list.</h3>
+          <%= render 'mailinglist_form' %>
+          <hr>
+        <h3>If you wish to make any inquiries, click <a href="/contact">here</a> to fill out a quick contact form.</h3>
+      </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>

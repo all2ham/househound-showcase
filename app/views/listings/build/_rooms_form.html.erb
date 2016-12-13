@@ -1,0 +1,115 @@
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">BEDROOMS</h3>
+  <%= f.simple_fields_for :bedrooms, @listing.bedrooms do |ff| %>
+    <%= render 'rooms/bedroom_fields', { f: ff } %>
+  <% end %>
+  <%= link_to_add_fields f, :bedrooms %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">BATHROOMS</h3>
+  <%= f.simple_fields_for :bathrooms, @listing.bathrooms do |ff| %>
+    <%= render 'rooms/bathroom_fields', { f: ff } %>
+  <% end %>
+  <%= link_to_add_fields f, :bathrooms %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">BALCONY</h3>
+  <%= f.simple_fields_for :balcony, @balcony do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Balcony::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">BASEMENT</h3>
+  <%= f.simple_fields_for :basement, @basement do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Basement::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">COMMON ROOM</h3>
+  <%= f.simple_fields_for :common_room, @common_room do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: CommonRoom::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<% if @listing.apartment_building? %>
+  <div class="row buildrow">
+    <h3 class="small-3 rtitle">CORPORATION AMMENITIES</h3>
+    <%= f.simple_fields_for :corporation_amenities, @corporation_amenities do |ff| %>
+      <%= render partial: 'room_form', locals: { properties: CorporationAmenities::PROPERTIES, f: ff } %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">COUNTER TOPS</h3>
+  <%= f.simple_fields_for :counter_top, @counter_top do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: CounterTop::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">FIRE PLACE</h3>
+  <%= f.simple_fields_for :fireplace, @fireplace do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Fireplace::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">FLOOR</h3>
+  <%= f.simple_fields_for :floor, @floor do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Floor::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">GARAGE</h3>
+  <%= f.simple_fields_for :garage, @garage do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Garage::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">KITCHEN</h3>
+  <%= f.simple_fields_for :kitchen, @kitchen do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Kitchen::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">LUXURY ROOM</h3>
+  <%= f.simple_fields_for :luxury_room, @luxury_room do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: LuxuryRoom::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">OTHER</h3>
+  <%= f.simple_fields_for :other, @other do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Other::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">OUTDOOR FEATURES</h3>
+  <%= f.simple_fields_for :outdoor_features, @outdoor_features do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: OutdoorFeatures::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">PARKING</h3>
+  <%= f.simple_fields_for :parking, @parking do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Parking::PROPERTIES, f: ff } %>
+  <% end %>
+</div>
+
+<div class="row buildrow">
+  <h3 class="small-3 rtitle">POOL</h3>
+  <%= f.simple_fields_for :pool, @pool do |ff| %>
+    <%= render partial: 'room_form', locals: { properties: Pool::PROPERTIES, f: ff } %>
+  <% end %>
+</div>

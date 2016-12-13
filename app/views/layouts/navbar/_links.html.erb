@@ -1,0 +1,42 @@
+<% if user_signed_in? %>
+  <% if current_user.is_admin? %>
+    <%= active_link('admin', 'index', 'Admin') %>
+  <% end %>
+  <% if current_user.is_agent? %>
+
+        <li id="build">
+          <%= link_to build_listings_path, method: :post do %>
+              <div class="show-for-small">
+              <i class="fa fa-plus-circle"></i> New Listing
+              </div>
+              <div class="hide-for-small">
+                <i class="fa fa-plus-circle"></i>
+              </div>
+          <% end %>
+        </li>
+        <li id="listings">
+        <%= link_to listings_path do %>
+              <div class="show-for-small">
+                <i class="fa fa-list-ul"></i> My Listings
+              </div>
+              <div class="hide-for-small">
+                <i class="fa fa-list-ul"></i>
+              </div>
+          <% end %>
+        </li>
+  <% end %>
+  <li class="has-dropdown">
+    <a href="#"><i class="fa fa-gear"></i></a>
+    <ul class="dropdown">
+      <% if current_user.is_agent? %>
+          <li><%= link_to 'Manage Subscription', current_user.subscription ? subscription_path : new_subscription_path %></li>
+          <li><%= link_to 'My Agent Profile', agent_profile_path(current_user.agent_profile) %></li>
+      <% end %>
+      <li><%= link_to 'Change Email/Password', edit_user_registration_path %></li>
+      <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </li>
+<% else %>
+    <%= active_link("registrations", "new", "Register") %>
+  	<%= active_link("sessions", "new", "Login") %>
+<% end %>

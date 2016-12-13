@@ -1,0 +1,104 @@
+<%= render 'layouts/pagetitle', { titlestring: 'Edit Profile' } %>
+
+<div class="row">
+<div class="small-8 columns small-centered">
+  <div id="agent-photo" class="small-6 columns">
+    <% if @agent_profile.photo %>
+       <%= image_tag @agent_profile.photo.photo.url, style:"max-height:158px" %>
+    <% end %>
+  </div>
+  <div class="fileinput-button text-center clickheredrag small-6 small-centered columns">
+    <div class="overlay"></div>
+    <div class="small-8 small-centered panel columns radius ">
+
+      <h3 style="color:#4bb33a !important;">Click or drag to upload profile picture.</h3>
+      <%= file_field_tag :file, id: 'fileupload' %>
+
+    </div>
+  </div>
+
+  <div id="agentuploadstatus" class="progress success round">
+    <span class="meter" style="width:0%;"></span>
+  </div>
+
+        <%= simple_form_for @agent_profile, html: { multipart: true, data: { 'agent-profile-id' => @agent_profile.id } } do |f| %>
+          <%= f.input :name %>
+          <%= f.input :phone_number %>
+          <%= f.input :email %>
+          <%= f.input :website %>
+          <%= f.input :brokerage %>
+          <%= f.submit 'Submit', class: 'button right' %>
+        <% end %>
+  <%= link_to 'Back', agent_profile_path(@agent_profile), class: 'button left' %>
+    </div>
+</div>
+<div class="row">
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+      autoUpload: true,
+      url: 'https://<%= Rails.application.secrets[:assets][:s3_bucket_name] %>.s3.amazonaws.com/',
+      type: 'POST',
+      dataType: 'xml',
+      acceptFileType: '/(\.|\/)(gif|jpe?g|png)$/i',
+      maxFileSize: 5000000,
+      maxNumberOfFiles: 1,
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#agentuploadstatus span').css(
+                'width',
+                progress + '%'
+        );
+      },
+      success: function(data) {
+        // Write the photo to the page
+
+        var url = $(data).find('Location').text();
+        var key = $(data).find('Key').text();
+
+        var agentProfileId = $('form').data('agent-profile-id');
+
+        var uploadData = {};
+        uploadData['key'] = key;
+
+
+
+        $.post('<%= url_for(upload_photo_agent_profile_path(@agent_profile)) %>',
+                uploadData,
+                function(data) {
+                    var photo = $("#agent-photo").children().first();
+                    $(photo).attr('src', url);
+//                  $("<img src='" + url + "' >").appendTo('#agent-photo');
+                }
+        );
+      },
+      fail: function(e, data) {
+        console.log('failed');
+        console.log(data);
+      },
+
+      submit: function(e, data) {
+        var $this = $(this);
+
+        $.ajax({
+          dataType: 'json',
+          url: '/photo-upload-form-data',
+          cache: false,
+          success: function (result) {
+            data.formData = result;
+            $this.fileupload('send', data);
+          },
+          error: function(response, status) {
+            alert('there was an error');
+          }
+        });
+        return false;
+      }
+
+    });
+  });
+</script>

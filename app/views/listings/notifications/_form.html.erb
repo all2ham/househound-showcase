@@ -1,0 +1,5 @@
+<%= simple_form_for :notification, url: url_for(listing_notifications_path(@listing)) do |f| %>
+  <%= f.input :message, label: 'Message (Up to 50 characters)', input_html: { maxlength: 50 } %>
+  <%= link_to 'Back', listing_notifications_path(@listing), class: 'button' %>
+  <%= f.submit 'Send', class: 'button' %>
+<% end %>

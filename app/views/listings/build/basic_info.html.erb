@@ -1,0 +1,22 @@
+<div class="row">
+
+  <%= render 'progress' %>
+
+  <%= simple_form_for @listing, url: wizard_path, wrapper: :prefix_input do |f| %>
+
+    <div class='row text-center'>
+      <div class="columns large-5">
+        <h3 style="padding-top:0px;">Listing Information</h3>
+        <%= render 'listing_form', { f: f } %>
+      </div>
+      <div class="columns large-5 large-offset-2">
+        <h3 style="padding-top:0px;">Address</h3>
+        <%= render 'address_form', { f: f } %>
+      </div>
+    </div>
+
+    <%= render 'navigation', { f: f } %>
+
+  <% end %>
+
+</div>

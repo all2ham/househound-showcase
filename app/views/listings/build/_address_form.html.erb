@@ -1,0 +1,7 @@
+<%= f.simple_fields_for :address, @address, wrapper: :prefix_input do |ff| %>
+  <%= ff.input :line_1 %>
+  <%= ff.input :line_2 %>
+  <%= ff.input :city %>
+  <%= ff.input :state_province, label: 'Province' %>
+  <%= ff.input :zip_postcode, label: 'Postal Code' %>
+<% end %>

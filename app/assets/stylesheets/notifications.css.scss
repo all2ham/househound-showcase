@@ -1,0 +1,15 @@
+  .titlestyle {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+    font-style: italic;
+    //display: block;
+    th {
+      font-weight: 400;
+      color: grey;
+    }
+    thead {
+      background: none;
+    }
+  }

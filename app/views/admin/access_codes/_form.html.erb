@@ -1,0 +1,6 @@
+<%= simple_form_for @access_code, url: admin_access_codes_path, wrapper: :prefix_input do |f| %>
+    <%= f.input :code %>
+    <%= f.input :limit %>
+    <%= f.input :notes %>
+    <%= f.submit 'Create Access Code', class: 'button expand' %>
+<% end %>

@@ -1,0 +1,31 @@
+<%= render partial: 'layouts/pagetitle', :locals => {:titlestring=> 'Access Codes'} %>
+
+<div class="row">
+  <%= link_to 'New Code', new_admin_access_code_path, class: 'button right' %>
+</div>
+
+<div class="row">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Limit</th>
+      <th>Remaining</th>
+      <th>Notes</th>
+      <th>Who Created?</th>
+      <th></th>
+    </tr>
+    <% @access_codes.each do |ac| %>
+      <tr>
+        <td><%= ac.id %></td>
+        <td><%= link_to ac.code, admin_access_code_path(ac) %></td>
+        <td><%= ac.limit %></td>
+        <td><%= ac.remaining %></td>
+        <td><%= ac.notes %></td>
+        <td><%= User.find(ac.versions.first.whodunnit).email %></td>
+        <td><%= link_to 'Delete', admin_access_code_path(ac), method: :delete, data: { confirm: t('access_code.confirm') } %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+

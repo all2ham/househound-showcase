@@ -1,0 +1,176 @@
+<%unless current_user %>
+<div class="show-for-small small-10 medium-6 large-4 small-centered columns">
+  <%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), wrapper: :prefix_input do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email, :autofocus => true, wrapper: :prefix_input %>
+        <%= f.input :password, wrapper: :prefix_input %>
+      </div>
+      <div class="row">
+        <div class="small-6 large-6 columns">
+          <%= f.input :remember_me, wrapper: :inline_checkbox_login, :as => :boolean if devise_mapping.rememberable? %>
+        </div>
+      </div>
+
+      <div class="form-actions small-12 small-centered columns text-center">
+        <%= f.button :submit, "Sign in", class: 'expand radius' %>
+      </div>
+  <% end %>
+
+  <%= render "devise/shared/password" %>
+</div>
+    <%end%>
+
+<div id="feedback" class="show-for-medium-up">
+  <a>Contact us!</a>
+</div>
+
+<div class="row show-for-small">
+  <%if user_signed_in?%>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+      <div class="row smallwelcomebuttons" style="background-color: #4bb33a">
+        <div class="small-6 columns small-centered text-center">Sign Out</div>
+      </div>
+  <% end %>
+  <% end %>
+
+
+<div class="row smallwelcomebuttons swb1" style="background-color: #36822a">
+  <div class="small-6 columns small-centered text-center">Learn More</div>
+</div>
+  <div class="row smallwelcomebuttons swb2" style="background-color: #4bb33a">
+    <div class="small-6 columns small-centered text-center">Contact Us!</div>
+  </div>
+</div>
+
+<div class="row fullWidth show-for-medium-up">
+  <div class="small-12  columns page1">
+  <div class="small-11 medium-7 large-6 columns small-centered" id="welcome">
+    <div class="row small-12 columns small-centered" id="header">
+      <div class="row">
+        <div class="small-offset-0" id="buyer-selector">
+          <h2>Buyers</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-offset-4 columns" id="agent-selector">
+          <h2>Agents</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-offset-8 columns" id="seller-selector">
+          <h2>Sellers</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" data-equalizer>
+      <div class="small-8 columns small-centered panel" id="buyer-description" data-equalizer-watch>
+        <ul class="welcometext">
+          <li>Easily track your likes and dislikes of every house you view</li>
+          <li>Receive status notifications about the properties you follow to make better, informed purchases</li>
+          <li>Easily communicate with the listing agent</li>
+        </ul>
+      </div>
+      <div class="small-8 columns small-centered panel" id="agent-description" data-equalizer-watch>
+        <ul class="welcometext">
+          <li>Receive information on users who follow your listing</li>
+          <li>Efficiently source leads and referrals</li>
+          <li>Communicate with followers via push notifications (price changes, open house, etc.)</li>
+          <!--<li>Search internally for properties that may match your clients profiles</li>-->
+        </ul>
+      </div>
+      <div class="small-8 columns small-centered panel" id="seller-description" data-equalizer-watch>
+        <ul class="welcometext">
+          <li>Communicate efficiently with your agent and track progress</li>
+          <li>Receive notifications about scheduled open houses</li>
+          <li>Receive notifications from your agent when an offer is placed</li>
+          <!--<li>Find the perfect agent to sell your home based on previous agent track records</li>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="row fullWidth learnmore show-for-medium-up">
+  <div class="small-6 columns small-centered panel">
+    Learn More <span style="color:grey;font-size:8pt">&#9660</span>
+  </div>
+</div>
+
+<div class="row show-for-large-up howitworkstext"><h1>How it Works</h1></div>
+<div class="row fullWidth cycle show-for-large-up"></div>
+
+<div class="row fullWidth show-for-large-up">
+  <%= image_tag 'welcome/anywherebanner.png' %>
+</div>
+
+<div class="row fullWidth">
+  <div class="features">
+    <div class="row">
+      <div class="small-3 columns panel show-for-medium-up">
+      </div>
+      <div class="large-2 small-4 columns panel show-for-medium-up">
+        <%= image_tag 'welcome/3dhouse.png' %>
+      </div>
+      <div class="small-12 medium-4 columns panel">
+        <h3 class="newlight">See your listings in a new light</h3>
+        <div class="small-8 columns small-centered panel show-for-small">
+          <%= image_tag 'welcome/3dhouse.png' %>
+        </div>
+        <p>HouseHound connects you to your customer base to ensure that every interaction goes as smoothly and easily as possible. Use our powerful tools to communicate, market listings efficiently, and develop a strong sales pipeline.</p>
+      </div>
+      <div class="small-3 columns panel show-for-large-up">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 columns panel show-for-medium-up">
+      </div>
+      <div class="small-12 medium-4 columns panel">
+        <h3>Recieve Instant Communation from Buyers</h3>
+        <div class="small-8 columns small-centered panel show-for-small">
+          <%= image_tag 'welcome/questions.png' %>
+        </div>
+        <p>Prospective buyers have your contact information on their phone immediately upon their interest in your listing. The user-friendly mobile app connects and simplifies every transaction.</p>
+      </div>
+      <div class="large-2 small-4 columns panel show-for-medium-up">
+        <%= image_tag 'welcome/questions.png' %>
+      </div>
+      <div class="small-3 columns panel show-for-large-up">
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 columns panel show-for-medium-up">
+      </div>
+      <div class="large-2 small-4 columns panel show-for-medium-up">
+        <%= image_tag 'welcome/broadcast.png' %>
+      </div>
+      <div class="small-12 medium-4 columns panel">
+        <h3>Broadcast Updates on your Listings</h3>
+        <div class="small-8 columns small-centered panel show-for-small">
+          <%= image_tag 'welcome/broadcast.png' %>
+        </div>
+        <p>Keep interested buyers up to date on the status of their favorite future homes. Our advanced notification system allows you to interact with buyers on a consolidated platform. Real-time status updates can be
+          transmitted to all real estate participants via our mobile app connecting and simplifying every transaction. Agents can easily connect with a broad range of users.</p>
+      </div>
+      <div class="small-3 columns panel show-for-large-up">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row fullWidth">
+  <div class="moreinfoform">
+    <div class="row">
+      <div class="large-4 small-centered columns panel">
+        <h3>Inquire about pricing options today</h3>
+        <p>Fill out this form and one of our customer service agents will repond at the earliest availibility!<p>
+        <%= render 'contact_form' %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

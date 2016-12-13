@@ -1,0 +1,15 @@
+<%= simple_form_for :user, :html => {:class => "form-horizontal"}, url: url_for(user_session_path) do |f| %>
+  <div class="form-inputs" style = "width:400px">
+  	<div style = "float:left;margin-right:20px;">
+    <%= f.input :email, :required => false, :autofocus => true %>
+</div>
+<div style = "float:left;margin-right:20px;">
+    <%= f.input :password, :required => false %>
+    </div>
+    <%#= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit,"", :id => "checkoutbutton"%>
+  </div>
+<% end %>

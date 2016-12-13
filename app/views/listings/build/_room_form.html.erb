@@ -1,0 +1,5 @@
+<% properties.each do |attr, type| %>
+<div class="small-3 columns left selectioncell">
+  <%= render partial: "rooms/fields/#{type}", locals: { field: attr, f: f } %>
+</div>
+<% end %>

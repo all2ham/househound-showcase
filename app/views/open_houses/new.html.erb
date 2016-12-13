@@ -1,0 +1,9 @@
+<%= render partial: 'layouts/pagetitle', :locals => {:titlestring=> 'New Open House' } %>
+<div class="row">
+<p>New Open House for <span style="font-weight: 500;"><%= @listing.address %>:</span> </p>
+
+<div class="columns small-10 large-8 small-offset-1 large-offset-2">
+  <%= render 'form' %>
+</div>
+
+</div>

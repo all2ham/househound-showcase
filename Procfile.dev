@@ -1,0 +1,4 @@
+redis: redis-server
+sidekiq: sidekiq -C config/sidekiq.yml
+#rails: rails s
+#rpush: rpush start

@@ -1,0 +1,9 @@
+<%= render 'layouts/pagetitle', { titlestring: 'Admin Actions' } %>
+
+<div class="row">
+  <ul>
+    <li><%= link_to 'Access Codes', admin_access_codes_path %></li>
+    <li><%= link_to 'All Users', admin_users_path %></li>
+    <li data-no-turbolink><%= link_to 'Sidekiq Job Queue', sidekiq_web_path %></li>
+  </ul>
+</div>

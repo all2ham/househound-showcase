@@ -1,0 +1,145 @@
+<div id="modalselector"></div>
+<div class="row">
+
+  <%= render partial: 'layouts/pagetitle', :locals => {:titlestring=>"My Listings"} %>
+
+
+<% if current_user.listings.active.count == 0 %>
+      <% if current_user.listings.not_active.count == 1 %>
+          <h3>You currently have a listing in progress, click <a><%= link_to 'here', build_listings_path, method: :post %></a> to finish it.</h3>
+      <% else %>
+        <h3>You currently have no active listings, click <a><%= link_to 'here', build_listings_path, method: :post %></a>   to create one.</h3>
+      <% end %>
+<% else %>
+
+  <div id='listings'>
+    <div class="row show-for-large-up">
+    <table class="tablestyling">
+      <tr class="titlestyle">
+        <th class="trpic"></th>
+        <th class="thaddress">Address</th>
+        <th class="trprice">Price</th>
+        <th>Expires in</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+      <% @active_listings.each do |listing|%>
+
+
+
+          <div id="modal-<%= listing.id %>" class="reveal-modal" data-reveal>
+            <h2>Select a Poster Layout</h2>
+            <p class="lead">Generate a poster for <%= listing.address.line_1 %></p>
+            <div class="small-6 columns panel">
+            <%= link_to listing_path(listing, format: :pdf, poster_type: 'dark') do %>
+                <div class="button printselector expand">
+                  <i class="fa fa-print"></i> Dark
+                </div>
+            <% end %>
+            <%= image_tag 'listings/dark.png', class: 'postereg' %>
+            </div>
+            <div class="small-6 columns panel">
+            <%= link_to listing_path(listing, format: :pdf, poster_type: 'light') do %>
+                <div class="button printselector expand">
+                  <i class="fa fa-print"></i> Light
+                </div>
+            <% end %>
+            <%= image_tag 'listings/ex_light.png', class: 'postereg' %>
+            </div>
+            <a class="close-reveal-modal">&#215;</a>
+          </div>
+        <tr class="tablestyle">
+          <% url = listing.photos.first ? listing.photos.first.photo.url : '' %>
+          <td><%= image_tag url, size: "50x50" %></td>
+          <td class="traddress"><%= link_to listing.address.line_1, listing_path(listing),class:'' %></td>
+          <td class="trprice"><%= number_to_currency(listing.price) %></td>
+          <td class="trexp"><%= distance_of_time_in_words_to_now((listing.expiry_date)) %></td>
+          <td>
+            <a href="#" data-reveal-id="modal-<%= listing.id %>">
+                <div class="button">
+                  <i class="fa fa-print"></i>
+                </div>
+            </a>
+          </td>
+          <td>
+          <%= link_to listing_notifications_path(listing) do %>
+            <div class="button">
+              <i class="fa fa-bullhorn"></i>Notifications
+            </div>
+          <% end %>
+          </td>
+          <td>
+            <%= link_to listing_open_houses_path(listing) do %>
+              <div class="button">
+              <i class="fa fa-home"></i>Open Houses
+              </div>
+            <% end %>
+          </td>
+          <td>
+          <%= link_to edit_listing_build_index_path(listing) do %>
+            <div class="button">
+              <i class="fa fa-pencil"></i>Edit
+            </div>
+          <% end %>
+          </td>
+          <td>
+          <%= link_to listing_path(listing), method: :delete, data: { confirm: 'Are you sure?'} do %>
+            <div class="button">
+              <i class="fa fa-trash"></i>Delete
+            </div>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    </div>
+<!--***************** Duplicate for Small Screens *********************************      -->
+      <div class="row show-for-medium-down" style="">
+        <div class="small-12 columns small-centered ">
+
+          <% @active_listings.each do |listing|%>
+              <div class="smalltablestyle" >
+              <div class="row">
+                <div class="small-12 columns smallcell"><%= link_to listing.address.line_1, listing_path(listing) %></div>
+                <div class="small-12 columns smallcell"><%= number_to_currency(listing.price) %></div>
+              </div>
+              <div class="row">
+                <div class="small-3 columns">
+                  <%= link_to listing_notifications_path(listing) do %>
+                      <div class="smallbutton">
+                        <i class="fa fa-bullhorn"></i>
+                      </div>
+                  <% end %>
+                </div>
+                <div class="small-3 columns">
+                  <%= link_to listing_open_houses_path(listing) do %>
+                      <div class="smallbutton">
+                        <i class="fa fa-home"></i>
+                      </div>
+                  <% end %>
+                </div>
+                <div class="small-3 columns">
+                  <%= link_to edit_listing_build_index_path(listing) do %>
+                      <div class="smallbutton">
+                        <i class="fa fa-pencil"></i>
+                      </div>
+                  <% end %>
+                </div>
+                <div class="small-3 columns">
+                  <%= link_to listing_path(listing), method: :delete, data: { confirm: 'Are you sure?'} do %>
+                      <div class="smallbutton">
+                        <i class="fa fa-trash"></i>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+              </div >
+          <% end %>
+        </div>
+      </div>
+  </div>
+<% end %>
+</div>
+

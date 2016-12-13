@@ -1,0 +1,17 @@
+<br>
+<div class="row" style="bottom: -3rem; position: relative;">
+  <div class="columns small-4 medium-2">
+    <%= link_to 'Previous Step', previous_wizard_path, class: 'button expand' %>
+    &nbsp;
+  </div>
+  <div class="columns small-4 medium-2 medium-offset-3 text-center">
+    <%= link_to 'Start Over', build_listings_path(old_listing_id: @listing.id), method: :post, data: { confirm: t('listing.build.restart')}, class: 'button expand' %>
+  </div>
+  <div class="columns small-4 medium-2">
+    <% if f ||= nil %>
+      <%= f.submit 'Next Step', class: 'button expand right' %>
+    <% else %>
+      <%= link_to 'Next Step', next_wizard_path, class: 'button expand right' %>
+    <% end %>
+  </div>
+</div>

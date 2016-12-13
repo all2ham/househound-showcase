@@ -1,0 +1,19 @@
+<%= render 'layouts/pagetitle', { titlestring: "Access Code #{@access_code.code}"} %>
+<div class="row">
+  <h2>Limit: <%= @access_code.limit %></h2>
+  <h2>Remaining: <%= @access_code.remaining %></h2>
+</div>
+<div class="row">
+  <table>
+    <tr>
+      <th>User Email</th>
+      <th>Used at</th>
+    </tr>
+    <% @access_code.users.each do |u| %>
+      <tr>
+        <td><%= u.email %></td>
+        <td><%= u.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

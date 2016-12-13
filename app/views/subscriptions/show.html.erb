@@ -1,0 +1,41 @@
+<%= render 'layouts/pagetitle', titlestring: 'Manage Subscription' %>
+
+<div class="row">
+  <div class="columns small-10 small-offset-1 medium-8 medium-offset-2">
+    <table>
+      <tr>
+        <th>Plan</th>
+        <td><%= @subscription.plan.name %></td>
+      </tr>
+      <tr>
+        <th>Status:</th>
+        <td><%= @subscription.status.humanize %></td>
+      </tr>
+      <% if @subscription.can_cancel? %>
+          <tr>
+            <th>Subscribed on:</th>
+            <td><%= @subscription.subscribed_on %></td>
+          </tr>
+          <tr>
+            <th>Renews on:</th>
+            <td><%= @subscription.period_start %></td>
+          </tr>
+      <% elsif @subscription.can_reactivate? %>
+        <tr>
+          <th>Cancelled on</th>
+          <td><%= @subscription.cancelled_on %></td>
+        </tr>
+        <tr>
+          <th>Active until</th>
+          <td><%= @subscription.period_end %></td>
+        </tr>
+      <% end %>
+    </table>
+    <% if @subscription.can_cancel? %>
+      <%= link_to 'Cancel Subscription', cancel_subscription_path, method: :delete, class: 'button expand', data: { confirm: 'Are you sure you want to cancel?' } %>
+    <% elsif @subscription.can_reactivate? %>
+      <%= link_to 'Re-activate Subscription', new_subscription_path, class: 'button expand'  %>
+    <% end %>
+
+  </div>
+</div>

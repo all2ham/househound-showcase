@@ -1,0 +1,7 @@
+<%= f.input :price %>
+<%= f.input :description %>
+<%= f.input :floor_area %>
+<%= f.input :building_type, as: :select, collection: Listing::BUILDING_TYPES, label_method: -> (type) { type.to_s.titleize }, include_blank: t('listing.build.select.building_type') %>
+<%= f.input :building_style, as: :select, collection: Listing::BUILDING_STYLES, include_blank: t('listing.build.select.building_style') %>
+<%= f.input :property_taxes %>
+<%= f.input :expiry_date, as: :string, input_html: { class: 'date_picker' } %>

@@ -1,0 +1,251 @@
+<%= render partial: 'layouts/pagetitle', :locals => {:titlestring=>"Manage Listing"} %>
+<div class="row">
+    <ul class="tabs" data-tab>
+      <li class="tab-title active small-6 columns text-center"style="z-index:3;"><a href="#panel1">FEATURES</a></li>
+      <li class="tab-title small-6 columns text-center" style="z-index:2;"><a href="#panel2">ANALYTICS</a></li>
+    </ul>
+    <div class="tabs-content">
+      <div class="content active" id="panel1">
+        <div class="row">
+          <h4>Basic Information
+            <%= link_to edit_listing_build_index_path(@listing), class: 'edit' do %>
+                 - <i class="fa fa-edit"></i> Edit
+            <% end %>
+            </h4>
+          <hr>
+          <table>
+            <tbody>
+            <tr>
+              <td class="listingtablecell">Address:</td>
+              <td><%= @listing.address %></td>
+            </tr>
+            <tr>
+              <td class="listingtablecell">Price:</td>
+              <td><%= @listing.price %></td>
+            </tr>
+            <tr>
+              <td class="listingtablecell">Description:</td>
+              <td><%= @listing.description %></td>
+            </tr>
+            <tr>
+              <td class="listingtablecell">Dimensions:</td>
+              <td><%= @listing.floor_area %></td>
+            </tr>
+            <tr>
+              <td class="listingtablecell">Building Type:</td>
+              <td><%= @listing.building_type.titleize %></td>
+            </tr>
+            <tr>
+              <td class="listingtablecell">Building Style:</td>
+              <td><%= @listing.building_style %></td>
+            </tr>
+            <tr>
+              <td class="listingtablecell">Property Taxes:</td>
+              <td><%= @listing.property_taxes %></td>
+            </tr>
+            </tbody>
+          </table>
+          <h4>Rooms
+            <%= link_to edit_listing_build_index_path(@listing), class: 'edit' do %>
+                - <i class="fa fa-edit"></i> Edit
+            <% end %>
+          </h4>
+          <hr>
+          <table>
+          <% @listing.rooms.each do |room| %>
+                <tr>
+                  <td class="listingtablecell"><%= room.type %></td>
+                  <% room.properties.each do |k, v| %>
+                        <% if room.public_send("#{k}").is_a?(TrueClass) %>
+                          <td>
+                          <%= k.humanize %>
+                          </td>
+                        <% elsif room.public_send("#{k}").is_a?(FalseClass) %>
+                        <% else %>
+                          <% if k == "context" %>
+                              <td>
+                                <%= v.humanize %>
+                              </td>
+                          <% else  %>
+                              <% if v %>
+                                  <td>
+                                    <%= k.humanize %>:
+                                    <%= v %>
+                                  </td>
+                              <% end %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </tr>
+          <% end %>
+          </table>
+
+          <h4>Photos
+            <%= link_to edit_listing_build_index_path(@listing), class: 'edit' do %>
+                - <i class="fa fa-edit"></i> Edit
+            <% end %>
+          </h4>
+          <hr>
+
+              <div class="small-8 columns small-centered galleria">
+                <% @listing.photos.each do |photo|  %>
+                    <%= image_tag photo.photo %>
+                <% end %>          </div>
+        </div>
+      </div>
+      <div class="content" id="panel2">
+        <div class="row">
+        <div class="small-12 medium-4 columns">
+          <div class="panel small-centered text-center">
+          <h1 class="megaheader"> <%=	@listing.follows.count  %></h1>
+            <h5>Current subscribers</h5>
+          </div>
+        </div>
+        <div class="small-12 medium-4 columns">
+          <div class="panel small-centered text-center">
+            <h1 class="megaheader">
+              <% if @listing.follows.count > 0 %>
+                <%=	@listing.follows.first.created_at.strftime("%b %d")  %>
+              <% else %>
+                -
+              <% end %>
+            </h1>
+            <h5>Most recent subscriber</h5>
+          </div>
+        </div>
+        <div class="small-12 medium-4 columns">
+          <div class="panel small-centered text-center">
+            <h1 class="megaheader">
+              <% if @listing.follows.count > 0 %>
+                  <%=	@listing.follows.last.created_at.strftime("%b %d")  %>
+              <% else %>
+                  -
+              <% end %>
+            </h1>
+            <h5>First subscriber</h5>
+          </div>
+        </div>
+        </div>
+        <h4>Buyer Rating of Rooms
+        </h4>
+        <hr>
+        <div class="row">
+        <table class="small-4 columns">
+          <tr>
+            <th>Room</th>
+            <th>Average Rating</th>
+          </tr>
+        <% @listing.rooms[0..6].each do |room| %>
+              <tr>
+                <td><%= room.type %></td>
+                <td><%= room.rating_average %></td>
+              </tr>
+        <% end %>
+        </table>
+        <table class="small-4 columns">
+          <tr>
+            <th>Room</th>
+            <th>Average Rating</th>
+          </tr>
+          <% @listing.rooms[7..11].each do |room| %>
+              <tr>
+                <td><%= room.type %></td>
+                <td><%= room.rating_average %></td>
+              </tr>
+          <% end %>
+        </table>
+        <table class="small-4 columns">
+          <tr>
+            <th>Room</th>
+            <th>Average Rating</th>
+          </tr>
+          <% @listing.rooms[13..17].each do |room| %>
+              <tr>
+                <td><%= room.type %></td>
+                <td><%= room.rating_average %></td>
+              </tr>
+          <% end %>
+        </table>
+        </div>
+        <div class="row text-center" id="averageroomrating">
+          <h4>Average room rating: <%= @listing.average_room_rating.floor %></h4>
+        </div>
+
+        <h4>Listing Subscriptions Over Time
+        </h4>
+        <hr>
+        <div class="canvas-holder">
+            <canvas id="myChart" width="1000" height="400"></canvas>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+    Galleria.run('.galleria',{responsive:true,height:0.6625,imageCrop:true });
+</script>
+<script>
+    addlistinginnavbar("<%= @listing.address.line_1 %>");
+</script>
+<script>
+    var data = {
+            labels: 0,
+            datasets: [
+                {
+                    label: "My First dataset",
+                    fillColor: "rgba(75, 179, 58, 0.2)",
+                    strokeColor: "rgba(75, 179, 58, 1)",
+                    pointColor: "rgba(75, 179, 58, 1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [0,0,0,0,0,0,0,0,0]
+                }
+            ]
+        };
+        var dates = <%= raw (@listing.created_at.to_date..Date.today).map{ |date| date.strftime("%b %d %y") }%>;
+        var follows = <%= raw (@listing.created_at.to_date..Date.today).map{ |date| 0 }%>;
+
+        <%
+        follow_count_on_dates = @listing.follows.map {|f| f.created_at.change(hour: 0)}.each_with_object(Hash.new(0)) {|follow_date,hash| hash[follow_date.strftime("%b %d %y")]+=1 }
+        arr = []
+        follow_count_on_dates.each do |k,v|
+            arr << {:date => k, :dailysubs => v}
+        end %>
+        followhash = <%=raw arr.to_json %>
+
+        for (var i=0;i<=dates.length;i++ ){
+            for (var j in followhash){
+                var da = followhash[j].date;
+                if (da == dates[i]) {
+                    follows[i] = follows[i] + followhash[j].dailysubs;
+                }
+            }
+            follows[i+1] = follows[i];
+        }
+
+        var outputdates = <%= raw (@listing.created_at.to_date..Date.today).map{ |date| date.strftime("%b %d") }%>;
+
+
+//        for (var i in dates){
+//            if (i != 0){
+//                follows[i] = follows[i-1];
+//            };
+//
+            <!--<#% @listing.follows.each do |follow| %>-->
+//                if ("<#%=raw follow.created_at.strftime("%b %d") %>" == dates[i]){
+//                    follows[i] = follows[i-1] + 1;
+//                }
+            <!--<#% end %>-->
+//        };
+        data.labels = outputdates;
+        data.datasets[0].data = follows;
+
+        var ctx = document.getElementById("myChart").getContext("2d");
+        new Chart(ctx).Line(data);
+
+
+
+</script>
+
+

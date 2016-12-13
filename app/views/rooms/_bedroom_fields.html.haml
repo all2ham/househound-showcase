@@ -1,0 +1,9 @@
+.room.row
+  = f.input :context, label: false, collection: Bedroom::TYPES, label_method: lambda { |k| ActiveSupport::Inflector.titleize(k) }, prompt: "(Select a type)", input_html: { class: 'radius' }, wrapper: :bed_bath_1
+  -#.small-2.columns
+  -#  &nbsp;
+  = f.input :square_footage, wrapper: :bed_bath_2, label: 'Square Footage:'
+  = link_to '#', class: "button small remove_fields right" do
+    %i.fa.fa-ban.fa-2x
+  = f.input :_destroy, as: :hidden
+

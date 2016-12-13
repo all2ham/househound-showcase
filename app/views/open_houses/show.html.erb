@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @open_house.date %>
+</p>
+
+<p>
+  <strong>Listing:</strong>
+  <%= @open_house.listing_id %>
+</p>
+
+<%= link_to 'Edit', edit_resource_url %> |
+<%= link_to 'Back', collection_url %>

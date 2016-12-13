@@ -1,0 +1,17 @@
+<h2 class="text-center">Resend confirmation instructions</h2>
+
+<div class="small-10 medium-6 large-4 small-centered columns">
+  <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.full_error :confirmation_token %>
+
+      <div class="form-inputs">
+        <%= f.input :email, :required => true, :autofocus => true, wrapper: :inline_input %>
+      </div>
+
+      <div class="form-actions small-12 small-centered columns">
+        <%= f.button :submit, "Resend confirmation instructions", class: 'expand radius' %>
+      </div>
+  <% end %>
+</div>

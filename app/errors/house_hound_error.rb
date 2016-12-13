@@ -1,0 +1,1 @@
+class HouseHoundError < StandardError; end

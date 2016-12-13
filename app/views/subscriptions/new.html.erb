@@ -1,0 +1,20 @@
+<%#= render 'layouts/pagetitle', titlestring: 'Plans' %>
+
+<div class="pricing">
+  <div class="row pricingrowJS">
+    <h1 class="text-center megaheader">Plans</h1>
+    <h4 class="text-center">We offer 3 service levels for agents.</h4>
+    <hr>
+    <div class="">
+      <ul class="pricing-table small-12 large-3 columns pt1">
+      <%= render 'free_plan' %>
+      </ul>
+      <ul class="pricing-table small-12 large-3 columns pt2">
+        <%= render 'plan', plan: Plan.plus %>
+      </ul>
+      <ul class="pricing-table small-12 large-3 columns pt3">
+        <%= render 'plan', plan: Plan.premium %>
+      </ul>
+    </div>
+  </div>
+</div>

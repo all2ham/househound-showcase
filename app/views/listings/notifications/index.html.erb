@@ -1,0 +1,21 @@
+<%= render 'layouts/pagetitle', { :titlestring => 'Notifications Sent' } %>
+
+
+<div class="row">
+  <%= link_to 'New Notification', new_listing_notification_path(@listing), class: 'button expand' %>
+</div>
+<div class="row text-center">
+  <table width="100%">
+    <tr class="titlestyle">
+      <th class="">Message</th>
+      <th class="">Sent At</th>
+    </tr>
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td><%= notification.message %></td>
+        <td><%= notification.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>

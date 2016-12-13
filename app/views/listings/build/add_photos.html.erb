@@ -1,0 +1,7 @@
+<div class="row">
+  <%= render 'progress' %>
+  <%= simple_form_for @listing, url: wizard_path, html: { data: { listing_id: @listing.id } } do |f| %>
+    <%= render 'file_upload_form', { f: f } %>
+    <%= render 'navigation', { f: f } %>
+  <% end %>
+</div>

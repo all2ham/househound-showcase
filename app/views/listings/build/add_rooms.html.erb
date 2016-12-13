@@ -1,0 +1,8 @@
+<div class="row">
+<%= simple_form_for @listing, url: wizard_path, wrapper: :prefix_input do |f| %>
+
+  <%= render 'progress' %>
+  <%= render 'rooms_form', { f: f } %>
+  <%= render 'navigation', { f: f } %>
+<% end %>
+</div>

@@ -1,0 +1,29 @@
+<%= render 'layouts/pagetitle', { titlestring: 'My Profile' } %>
+<div id="agentprofilecard"class="row">
+    <div class="small-8 columns panel small-centered">
+      <div class="row">
+        <% if @agent_profile.photo %>
+          <%= image_tag @agent_profile.photo.photo.url,class:"small-3 columns"%>
+        <% else %>
+          <%= image_tag 'profile_dummy.png', style:"height:190px" %>
+        <% end %>
+
+        <div class="small-8 columns">
+              <div class="row font"><h2><%= @agent_profile.name %></h2></div>
+              <div class="row font"><%= @agent_profile.phone_number %></div>
+              <div class="row font"><%= @agent_profile.email %></div>
+              <div class="row font"><%= @agent_profile.website %></div>
+              <div class="row font"><%= @agent_profile.brokerage %></div>
+        </div>
+</div>
+
+    </div>
+  <div class="row">
+  <div class=" small-8 columns small-centered">
+
+    <%= link_to 'Edit My Profile', edit_agent_profile_path(@agent_profile), class: 'button expand' %>
+  </div>
+  </div>
+</div>
+
+

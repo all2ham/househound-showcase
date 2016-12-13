@@ -1,0 +1,46 @@
+<%= render partial: 'layouts/pagetitle', :locals => {:titlestring=>"Open Houses"} %>
+<div class="row">
+  <div class="large-5 small-12 columns small-centered">
+ <p>The following open houses are scheduled for <span style="font-weight: 500;"><%= @listing.address %>:</span> </p>
+<div id="openhousetable">
+
+<table class="row">
+  <thead class="titlestyle">
+    <tr>
+      <th>Start</th>
+      <th>End</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody class="">
+    <% @open_houses.each do |open_house| %>
+      <tr class="">
+        <td><%= open_house_date(open_house.start) %></td>
+        <td><%= open_house_date(open_house.end) %></td>
+        <td>
+        <%= link_to edit_listing_open_house_path(@listing, open_house) do %>
+            <div class="button">
+              <i class="fa fa-pencil"></i>Edit
+            </div>
+        <% end %>
+        </td>
+        <td>
+          <%= link_to listing_open_house_path(@listing, open_house), method: :delete, data: { confirm: 'Are you sure you want to remove this open house?'} do %>
+              <div class="button">
+                <i class="fa fa-trash"></i>Delete
+              </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <br>
+  <div class="row">
+  <%= link_to 'New Open house', new_listing_open_house_path, class: 'button expand' %>
+  </div>
+</div>
+</div>
+</div>

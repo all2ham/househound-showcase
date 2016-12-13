@@ -1,0 +1,28 @@
+
+<%= render partial: 'layouts/pagetitle', :locals => {:titlestring=>"New Listing"} %>
+<div class="row text-center" style="padding-bottom:7px;">
+  Step <%= @current_step %> of <%= @total_steps %>
+</div>
+
+
+<div class="progress round">
+  <span class="meter" style="width: <%= @progress_percentage %>%"></span>
+</div>
+<div class="row text-center">
+  <div class="columns small-4">
+    <% conditional_tag(show_tag: @current_step == 1, tag: :strong) do %>
+      Basic Info
+    <% end %>
+  </div>
+  <div class="columns small-4">
+    <% conditional_tag(show_tag: @current_step == 2, tag: :strong) do %>
+      Add Rooms
+    <% end %>
+  </div>
+  <div class="columns small-4">
+    <% conditional_tag(show_tag: @current_step == 3, tag: :strong) do %>
+      Add Photos
+    <% end %>
+  </div>
+</div>
+<br>

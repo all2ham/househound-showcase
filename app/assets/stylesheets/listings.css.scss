@@ -1,0 +1,467 @@
+// Place all the styles related to the listings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$orange: #4bb33a;
+
+.loadingmodal{
+  top:0;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+  background-color: rgba(0,0,0,0.2);
+}
+
+#listings {
+  .titlestyle{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:none;
+    font-style: italic;
+    display: block;
+    th{
+      font-weight: 400;
+      color:grey;
+    }
+  }
+  .trpic{
+    width:70px;
+  }
+  .thaddress{
+    width: 160px;
+    padding-left: 25px;
+  }
+  .traddress{
+    width:130px;
+  }
+  .trprice{
+    width:118px;
+  }
+  .trexp{
+    width:90px;
+    text-align: left;
+  }
+  .expiring {
+    background-color: yellow;
+  }
+  .expired {
+    background-color: #ED6553;
+  }
+  .active {
+    background-color: #14D938;
+  }
+  .tablestyling{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+    margin: 0;
+  }
+  .bodyrow {
+    margin: 10px !important;
+  }
+  .tablestyle {
+    display: block;
+    background-color: white;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #4bb33a;
+    border-radius:8px;
+    margin: 0;
+    margin-bottom: 20px;
+//    -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+    -o-transition: .3s;
+    -ms-transition: .3s;
+    -moz-transition: .3s;
+    -webkit-transition: .3s;
+    transition: .3s;
+    .smallcell{
+      padding-right: 5px;
+    }
+  }
+  .smalltablestyle {
+    background-color: #F9F9F9;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #4bb33a;
+    border-radius:8px;
+//    -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+    -o-transition: .3s;
+    -ms-transition: .3s;
+    -moz-transition: .3s;
+    -webkit-transition: .3s;
+    transition: .3s;
+  }
+  .tablestyle:hover{
+    background-color: #F9F9F9;
+  }
+  td {
+    text-align: center;
+  }
+  .smallbutton{
+    font-size:14px;
+    border: 1px solid #4bb33a;
+    border-radius: 5px;
+    background-color:#F9F9F9;
+    color:black;
+//    -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+    margin:5px;
+    padding:12px;
+    text-align: center;
+  }
+  .button{
+    font-size:14px;
+    border: 1px solid #4bb33a;
+    border-radius: 5px;
+    background-color:#F9F9F9;
+    color:black;
+//    -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+//    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0.59);
+    margin:0;
+    padding:12px;
+    outline: 1px solid;
+    outline-color: transparent;
+    -o-transition: .1s;
+    -ms-transition: .1s;
+    -moz-transition: .1s;
+    -webkit-transition: .1s;
+    transition: .1s;
+    //margin-left:-40px;
+    .fa{
+      padding-right: 10px;
+    }
+    .fa-print{
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  .button:hover{
+//    -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0);
+//    -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0);
+//    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0);
+//    outline: 1px solid;
+//    outline-color: #C9C9C9;
+  }
+  .smallbutton:hover{
+//    -webkit-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0);
+//    -moz-box-shadow: 1px 1px 5px -1px rgba(0,0,0,0);
+//    box-shadow: 1px 1px 5px -1px rgba(0,0,0,0);
+//    outline: 1px solid;
+//    outline-color: #C9C9C9;
+    background-color: white;;
+  }
+};
+
+.room {
+  vertical-align: middle;
+  outline: 1px solid  #D9D9D9 !important;
+  margin: 10px !important;
+  height: 75px;
+  padding: 20px;
+  input {
+    margin-bottom: 0px;
+  }
+  label {
+    padding-top: 8px;
+    font-size: 14px;
+  }
+  .button{
+    margin-bottom:0;
+    height: 37px;
+    padding-top: 6px;
+  }
+}
+
+
+
+#create_listing {
+
+  h1, h2 {
+    font-weight: 500;
+
+  }
+  .bedrooms {
+    padding: 5px 10px;
+    background-color: #373737;
+
+    h2, h3, h5 {
+      color: white;
+      text-transform: uppercase;
+      padding: 0px 5px;
+    }
+
+    .add {
+      padding: 0px 0px;
+    }
+
+    hr {
+      border-color: $orange;
+      border-width: 1px;
+      margin: 0;
+    }
+
+    .add_fields {
+      @extend .room;
+    }
+
+    select {
+      margin: 0px;
+    }
+
+    .remove_fields {
+      padding: 5px 10px;
+      margin: 0px;
+    }
+  }
+
+  .bathrooms {
+    @extend .bedrooms;
+  }
+
+  .row {
+    margin: 0px;
+  }
+  .small-4.columns.space {
+    padding-left: 5px;
+  }
+
+  .important_rooms {
+    @extend .bedrooms;
+
+    .row:first-of-type {
+      margin-top: 10px;
+    }
+    // margin-left: 5px;
+    margin-bottom: 5px;
+    label {
+        padding-top: 15px;
+        color: white;
+        .checkbox {
+          text-align: center;
+        }
+      }
+
+    .room_checkbox {
+      border: 1px solid #646464;
+      margin: 0px 0px 10px 0px;
+      span {
+        // Hide checkboxes
+        display: none;
+      }
+    }
+    .room_input {
+      @extend .room_checkbox;
+      label {
+        padding-top: 10px;
+      }
+      padding-top: 15px;
+
+    }
+    .active {
+      background-color: $orange;
+      border-color: $orange;
+      .custom_checkbox {
+        background: image-url('listings/pref_checked.png') no-repeat center;
+      }
+    }
+  }
+}
+
+#edit_listing {
+  @extend #create_listing;
+}
+
+.buildrow{
+  background-color: #F9F9F9;
+  padding: 10px;
+  margin: 10px !important;
+  -webkit-box-shadow: 4px 4px 25px -15px rgba(0,0,0,0.69);
+  -moz-box-shadow: 4px 4px 25px -15px rgba(0,0,0,0.69);
+  box-shadow: 4px 4px 25px -15px rgba(0,0,0,0.69);
+  .selectioncell{
+    padding:5px;
+    outline: 1px solid #D9D9D9;
+    outline-offset: -5px;
+  }
+  .rtitle{
+    border-bottom: 2px solid;
+    border-color: #4bb33a;
+  };
+  .inputstyle{
+    height: 50px;
+    margin: 0;
+  };
+  .inputstylecheck{
+    height: 50px;
+    margin: 0;
+    display:none;
+  };
+  .labelstyle{
+    padding-top: 12px !important;
+    height: 50px;
+  }
+  .cellmarker{
+  }
+  .noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  };
+  .custom_checkbox {
+    background: image-url('listings/pref_unchecked.png') no-repeat center;
+    min-height: 50px;
+    width: 20px;
+  }
+  .selected{
+    background-color: #373737 !important;
+    -webkit-box-shadow: inset 10px 10px 5px -9px rgba(0,0,0,0.81);
+    -moz-box-shadow: inset 10px 10px 5px -9px rgba(0,0,0,0.81);
+    box-shadow: inset 10px 10px 5px -9px rgba(0,0,0,0.81);
+  }
+  .selectedtext{
+    color:white!important;
+    padding-left: 1px;
+  }
+  .listing-prefix{
+    background:transparent;
+    height: 50px;
+    border: none;
+    padding-top: 0px !important;
+    .optional{
+      height: 50px;
+      color: black;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+  };
+  h3{
+    padding-top: 0px !important;
+    color: black;
+    font-size:15px;
+    padding-left:10px;
+  }
+};
+.clickheredrag{
+  background-image: image-url("listings/graphy_@2X.png");
+  background-size: 58px;
+  background-position: center;
+  min-height: 155px;
+  max-height: 155px;
+
+  border: 2px solid #777777;
+  -o-transition: .4s;
+  -ms-transition: .4s;
+  -moz-transition: .4s;
+  -webkit-transition: .4s;
+  transition: .4s;
+  margin-bottom: 20px;
+}
+.clickheredrag:hover{
+//  -webkit-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.75);
+//  -moz-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.75);
+//  box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.75);
+}
+.clickheredrag:hover > .overlay {
+  width:100%;
+  height:100%;
+  position:absolute;
+  background-color:#000;
+  opacity:0.8;
+}
+
+.th {
+  width: 150px;
+  height: 100px;
+  //background: #444;
+  margin: 0 auto;
+  box-shadow: none !important;
+}
+.content hr{
+  border-color:#4bb33a;
+  margin-top: 1px;
+}
+h4{
+  margin-bottom:1px;
+}
+.tabs{
+  -webkit-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.2);
+  margin-bottom:20px !important;
+}
+.tab-title {
+  border-bottom: 3px solid #4bb33a;
+  font-weight: 600;
+  a{
+    padding-top:20px !important;
+    color: rgba(255,255,255,0.5) !important;
+    -o-transition: .2s;
+    -ms-transition: .2s;
+    -moz-transition: .2s;
+    -webkit-transition: .2s;
+    transition: .2s;
+  }
+}
+.tab-title.active{
+  border-bottom: 3px solid white;
+  a{
+    background-color: #4bb33a !important;
+    color: rgba(255,255,255,1) !important;
+  }
+}
+.listingtablecell{
+  border-right: 1px solid #C0C0C0;
+}
+table{
+  border: none;}
+.edit{
+  color:#C0C0C0;
+  font-weight: 400;
+}
+.postereg{
+  padding: 5px;
+  border: 1px solid #C0C0C0;
+}
+tr .a{
+  display: block;
+}
+.galleria-theme-classic{
+  background-color:white;
+  border: 1px solid #C9C9C9;
+}
+#panel2 .panel{
+  background-color: #373737;
+  margin:5px;
+  margin-bottom:10px;
+  h1{
+    color:white !important;
+  }
+  h5{
+    color:#AAA !important;
+  }
+}
+#averageroomrating{
+  background-color:#373737;
+  h4{
+    color:white;
+    margin:15px;
+  }
+  margin-bottom:15px
+}
